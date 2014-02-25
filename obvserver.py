@@ -11,7 +11,6 @@ class WatchBuilder(FileSystemEventHandler):
         if extension == '.nasm':
             os.system('nasm -f elf %s 2>&1' % filename)
         elif extension == '.o':
-            print('ld -m elf_i386 -s -o %s %s 2>&1' % (filename[:-2], filename))
             os.system('ld -m elf_i386 -s -o %s %s 2>&1 &> /dev/null' % (filename[:-2], filename))
         elif extension == '.c':
             os.system('cc -mpreferred-stack-boundary=2 -fno-stack-protector -ggdb %s -o %s'
